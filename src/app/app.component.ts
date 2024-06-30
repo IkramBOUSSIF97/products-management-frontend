@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   //first commit added
+  //commit to a new branch dev
   title = 'productManagement-frontend';
 }
