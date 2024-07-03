@@ -1,0 +1,53 @@
+<div class="container-sm" reduced-margin>
+  <div class="row">
+
+
+    <div class="row">
+      <div class="col-md-8 col-sm-12 mb-2" style="margin-top: 20px;">
+        <input type="text" placeholder="Enter search product..." [(ngModel)]="searchTerm" (keyup)="onSearchInputChange()" class="form-control" />
+      </div>
+      <div class="col-md-4 col-sm-12 mb-2" style="margin-top: 20px;">
+        <div class="text-md-end">
+          <button type="submit" class="btn btn-secondary btn-sm" (click)="addProduct()">ADD PRODUCT</button>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <div class="mt-8 py-5 flex justify-start items-center">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let product of myProducts | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+      <mat-card class="mb-4">
+        <mat-card-header class="header">
+          <mat-card-title class="title">{{ product.title }}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image [src]="product.images" alt="Card Image" (click)="goToDetailProduct(product.id)">
+        <mat-card-content>
+          <p>{{ product.description }}</p>
+          <br>
+          <p><strong>$ {{ product.price }}</strong></p>
+        </mat-card-content>
+
+        <div *ngIf="product.price < 10" class="flash-sale-label">Vente Flash</div>
+
+        <div *ngIf="product.price < 50" class="promotion-label">
+          Promotion: {{ product.discountPercentage }}% de réduction
+        </div>
+
+        <div *ngIf="checkIsProductNew(product.meta.createdAt)" class="new-label">Nouveau</div>
+      </mat-card>
+    </div>
+
+    <ng-template #noResults>
+      <div class="col-md-6 text-center">
+        <p>No result found</p>
+      </div>
+    </ng-template>
+  </div>
+</div>
