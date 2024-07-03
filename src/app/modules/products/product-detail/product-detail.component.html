@@ -1,0 +1,26 @@
+<div class="container">
+  <div *ngIf="product" class="card-container">
+    <mat-card class="product-card">
+      <mat-card-header class="header">
+        <mat-card-title class="title">{{ product.title }}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image [src]="product.images" alt="Product Image">
+      <mat-card-content>
+        <p>{{ product.description }}</p>
+        <p>Price: {{ product.price }}</p>
+        <div *ngIf="product.price < 10" class="flash-sale-label">Flash Sale</div>
+        <div class="rating-section">
+          <span class="rating-label">Rating:</span>
+          <div class="rating-stars">
+            <span class="fa fa-star" [ngClass]="{'checked': product.rating >= 1}"></span>
+            <span class="fa fa-star" [ngClass]="{'checked': product.rating >= 2}"></span>
+            <span class="fa fa-star" [ngClass]="{'checked': product.rating >= 3}"></span>
+            <span class="fa fa-star" [ngClass]="{'checked': product.rating >= 4}"></span>
+            <span class="fa fa-star" [ngClass]="{'checked': product.rating >= 5}"></span>
+          </div>
+          <!-- <span class="rating-value">{{ product.rating }}/5</span> -->
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

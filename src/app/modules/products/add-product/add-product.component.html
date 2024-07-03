@@ -1,0 +1,43 @@
+<h2 class="center" style="margin-left: 40%; margin-top: 15px;">Add New product</h2>
+<div class="container">
+  <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+    <div>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" #title="ngModel" name="title" pattern="^[a-zA-Zàéèç]{1,25}$"
+        [(ngModel)]="product.title"
+          required />
+        <!-- <div [hidden]="title.valid" class='card-panel est accent-1'>
+          The product title is required (1-25 characters).
+        </div> -->
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input class="form-control" id="description" name="description" [(ngModel)]="product.description" required />
+      </div>
+      <br>
+
+      <div class="form-group">
+        <label for="images">Image</label>
+        <input class="form-control" id="images" type="file" name="images" [(ngModel)]="product.images" />
+      </div>
+      <br>
+
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input class="form-control" id="price" type="number" name="price" [(ngModel)]="product.price" required/>
+      </div>
+
+    </div>
+    <br> <br>
+
+    <div class="divider"></div>
+    <div class="section center">
+      <button type="submit" class="btn btn-success" [disabled]="!myForm.form.valid">Submit</button>
+    </div>
+  </form>
+
+
+</div>
+
